@@ -396,7 +396,7 @@ public class PlayersData {
             else values.put(MiscInfoPlayersTable.IsOp, 0);
             if(player.isBanned()) values.put(MiscInfoPlayersTable.IsBanned, 1);
             else values.put(MiscInfoPlayersTable.IsBanned, 0);
-            values.put(MiscInfoPlayersTable.PlayerIp, player.getAddress().getAddress());
+            values.put(MiscInfoPlayersTable.PlayerIp, player.getAddress().getHostAddress());
             
             values.put(MiscInfoPlayersTable.Gamemode, player.getGameMode().getValue());
             values.put(MiscInfoPlayersTable.ExperiencePercent, player.getExp());
