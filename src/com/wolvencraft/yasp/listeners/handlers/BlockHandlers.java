@@ -47,8 +47,8 @@ public class BlockHandlers {
         @Override
         public void run() {
             OnlineSession session = OnlineSessionCache.fetch(player);
-            ((BlockData) session.getDataStore(DataStoreType.Blocks)).blockPlace(block);
-            session.getPlayerTotals().blockPlace();
+            ((BlockData) session.getDataStore(DataStoreType.Blocks)).blockBreak(block);
+            session.getPlayerTotals().blockBreak();
         }
         
     }
@@ -67,8 +67,8 @@ public class BlockHandlers {
         @Override
         public void run() {
             OnlineSession session = OnlineSessionCache.fetch(player);
-            ((BlockData) session.getDataStore(DataStoreType.Blocks)).blockBreak(block);
-            session.getPlayerTotals().blockBreak();
+            ((BlockData) session.getDataStore(DataStoreType.Blocks)).blockPlace(block);
+            session.getPlayerTotals().blockPlace();
         }
         
     }
