@@ -16,7 +16,7 @@ page:
     - " "
     - "&l&cItems:"
     - "Dropped: %ITEMS_DROPPED%"
-    - "Picekd up: %ITEMS_PICKEDUP%"
+    - "Picked up: %ITEMS_PICKEDUP%"
     3:
     - "&4&n %PLAYERNAME%"
     - " "
