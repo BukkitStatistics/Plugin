@@ -21,7 +21,7 @@ CREATE  TABLE IF NOT EXISTS `$dbname`.`$prefix_hook_factions` (
   `role` VARCHAR(255) NULL ,
   `title` VARCHAR(25) NULL ,
   PRIMARY KEY (`player_id`) ,
-  CONSTRAINT `fk_player_factns1`
+  CONSTRAINT `$prefix_fk_player_factns1`
     FOREIGN KEY (`player_id` )
     REFERENCES `$dbname`.`$prefix_players` (`player_id` )
     ON DELETE CASCADE

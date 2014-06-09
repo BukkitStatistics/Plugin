@@ -16,7 +16,7 @@ CREATE  TABLE IF NOT EXISTS `$dbname`.`$prefix_hook_vanish` (
   `player_id` INT NOT NULL ,
   `is_vanished` TINYINT(1) NOT NULL DEFAULT 0 ,
   PRIMARY KEY (`player_id`) ,
-  CONSTRAINT `fk_player_id20`
+  CONSTRAINT `$prefix_fk_player_id20`
     FOREIGN KEY (`player_id` )
     REFERENCES `$dbname`.`$prefix_players` (`player_id` )
     ON DELETE CASCADE

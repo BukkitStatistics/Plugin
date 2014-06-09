@@ -15,7 +15,7 @@ CREATE  TABLE IF NOT EXISTS `$dbname`.`$prefix_hook_vault` (
   `group` TEXT NULL ,
   `balance` FLOAT NOT NULL DEFAULT 0.0 ,
   PRIMARY KEY (`player_id`) ,
-  CONSTRAINT `fk_player_vault1`
+  CONSTRAINT `$prefix_fk_player_vault1`
     FOREIGN KEY (`player_id` )
     REFERENCES `$dbname`.`$prefix_players` (`player_id` )
     ON DELETE CASCADE

@@ -18,7 +18,7 @@ CREATE  TABLE IF NOT EXISTS `$dbname`.`$prefix_hook_jail` (
   `jailer` VARCHAR(16) NOT NULL ,
   `time` INT(11) NOT NULL ,
   PRIMARY KEY (`player_id`) ,
-  CONSTRAINT `fk_player_jail1`
+  CONSTRAINT `$prefix_fk_player_jail1`
     FOREIGN KEY (`player_id` )
     REFERENCES `$dbname`.`$prefix_players` (`player_id` )
     ON DELETE CASCADE

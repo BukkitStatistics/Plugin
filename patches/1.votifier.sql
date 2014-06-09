@@ -17,7 +17,7 @@ CREATE  TABLE IF NOT EXISTS `$dbname`.`$prefix_votifier_totals` (
   `service_name` VARCHAR(64) NOT NULL ,
   `votes` INT(11) NULL DEFAULT 0 ,
   PRIMARY KEY (`player_id`) ,
-  CONSTRAINT `fk_player_id_vot1`
+  CONSTRAINT `$prefix_fk_player_id_vot1`
     FOREIGN KEY (`player_id` )
     REFERENCES `$dbname`.`$prefix_players` (`player_id` )
     ON DELETE CASCADE
@@ -33,7 +33,7 @@ CREATE  TABLE IF NOT EXISTS `$dbname`.`$prefix_votifier_detailed` (
   `service_name` VARCHAR(64) NOT NULL ,
   `time` INT NULL DEFAULT NULL ,
   PRIMARY KEY (`player_id`) ,
-  CONSTRAINT `fk_player_id_vot2`
+  CONSTRAINT `$prefix_fk_player_id_vot2`
     FOREIGN KEY (`player_id` )
     REFERENCES `$dbname`.`$prefix_players` (`player_id` )
     ON DELETE CASCADE

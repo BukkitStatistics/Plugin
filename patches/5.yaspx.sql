@@ -3,8 +3,8 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- drop foreign keys
-ALTER TABLE `$prefix_detailed_pve_kills` DROP FOREIGN KEY fk_entity_id2;
-ALTER TABLE `$prefix_total_pve_kills` DROP FOREIGN KEY fk_entity_id1;
+ALTER TABLE `$prefix_detailed_pve_kills` DROP FOREIGN KEY $prefix_fk_entity_id2;
+ALTER TABLE `$prefix_total_pve_kills` DROP FOREIGN KEY $prefix_fk_entity_id1;
 
 -- alter entity table 
 ALTER TABLE `$prefix_entities` MODIFY entity_id VARCHAR(16);
@@ -14,8 +14,8 @@ ALTER TABLE `$prefix_detailed_pve_kills` MODIFY entity_id VARCHAR(16);
 ALTER TABLE `$prefix_total_pve_kills` MODIFY entity_id VARCHAR(16);
 
 -- add foreign keys
-ALTER TABLE `$prefix_detailed_pve_kills` ADD CONSTRAINT fk_entity_id2 FOREIGN KEY (entity_id) REFERENCES $prefix_entities(entity_id);
-ALTER TABLE `$prefix_total_pve_kills` ADD CONSTRAINT fk_entity_id1 FOREIGN KEY (entity_id) REFERENCES $prefix_entities(entity_id);
+ALTER TABLE `$prefix_detailed_pve_kills` ADD CONSTRAINT $prefix_fk_entity_id2 FOREIGN KEY (entity_id) REFERENCES $prefix_entities(entity_id);
+ALTER TABLE `$prefix_total_pve_kills` ADD CONSTRAINT $prefix_fk_entity_id1 FOREIGN KEY (entity_id) REFERENCES $prefix_entities(entity_id);
 
 -- alter health and food
 ALTER TABLE `$prefix_misc_info_players` MODIFY `food_level` DOUBLE UNSIGNED NOT NULL DEFAULT '0';

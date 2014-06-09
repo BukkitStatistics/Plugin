@@ -17,7 +17,7 @@ CREATE  TABLE IF NOT EXISTS `$dbname`.`$prefix_hook_commandbook` (
   `afk` TINYINT(1) NOT NULL DEFAULT 0 ,
   `god` TINYINT(1) NOT NULL DEFAULT 0 ,
   PRIMARY KEY (`player_id`) ,
-  CONSTRAINT `fk_player_cmdbck1`
+  CONSTRAINT `$prefix_fk_player_cmdbck1`
     FOREIGN KEY (`player_id` )
     REFERENCES `$dbname`.`$prefix_players` (`player_id` )
     ON DELETE CASCADE

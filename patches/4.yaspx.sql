@@ -46,7 +46,7 @@ CREATE  TABLE IF NOT EXISTS `$dbname`.`$prefix_player_locations` (
   `biome` VARCHAR(32) NULL DEFAULT NULL ,
   `humidity` FLOAT NOT NULL DEFAULT 0.0 ,
   PRIMARY KEY (`player_id`) ,
-  CONSTRAINT `fk_player_id20`
+  CONSTRAINT `$prefix_fk_player_id20`
     FOREIGN KEY (`player_id` )
     REFERENCES `$dbname`.`$prefix_players` (`player_id` )
     ON DELETE CASCADE
