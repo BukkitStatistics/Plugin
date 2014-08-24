@@ -42,6 +42,7 @@ public class Normal {
     public enum PlayerDistance implements DBTable {
         TableName       ("distances"),
         PlayerId        ("player_id"),
+        ServerId        ("server"),
         Foot            ("foot"),
         Swim            ("swim"),
         Flight          ("flight"),

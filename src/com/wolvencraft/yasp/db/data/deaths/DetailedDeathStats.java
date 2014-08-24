@@ -58,7 +58,7 @@ public class DetailedDeathStats {
                     .value(PlayerDeaths.PlayerId, playerId)
                     .value(PlayerDeaths.Cause, cause.name())
                     .value(PlayerDeaths.World, location.getWorld().getName())
-                    .value(PlayerDeaths.Server, Statistics.getServerStatistics().getID())
+                    .value(PlayerDeaths.ServerId, Statistics.getServerStatistics().getID())
                     .value(PlayerDeaths.XCoord, location.getBlockX())
                     .value(PlayerDeaths.YCoord, location.getBlockY())
                     .value(PlayerDeaths.ZCoord, location.getBlockZ())
