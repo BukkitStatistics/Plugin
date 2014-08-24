@@ -25,9 +25,11 @@ import lombok.Getter;
 
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 
+import com.wolvencraft.yasp.Statistics;
 import com.wolvencraft.yasp.db.Query;
 import com.wolvencraft.yasp.db.Query.QueryResult;
 import com.wolvencraft.yasp.db.data.NormalData;
+import com.wolvencraft.yasp.db.tables.Normal;
 import com.wolvencraft.yasp.db.tables.Normal.DeathTotals;
 import com.wolvencraft.yasp.settings.RemoteConfiguration;
 
@@ -55,12 +57,14 @@ public class TotalDeathStats extends NormalData {
         QueryResult result = Query.table(DeathTotals.TableName)
                 .column(DeathTotals.Times)
                 .condition(DeathTotals.PlayerId, playerId)
+                .condition(DeathTotals.ServerId, Statistics.getServerStatistics().ServerId())
                 .condition(DeathTotals.Cause, cause.name())
                 .select();
         
         if(result == null) {
             Query.table(DeathTotals.TableName)
                 .value(DeathTotals.PlayerId, playerId)
+                .value(DeathTotals.ServerId, Statistics.getServerStatistics().ServerId())
                 .value(DeathTotals.Cause, cause.name())
                 .value(DeathTotals.Times, times)
                 .insert();
@@ -72,6 +76,7 @@ public class TotalDeathStats extends NormalData {
         boolean result = Query.table(DeathTotals.TableName)
                 .value(DeathTotals.Times, times)
                 .condition(DeathTotals.PlayerId, playerId)
+                .condition(DeathTotals.ServerId, Statistics.getServerStatistics().ServerId())
                 .condition(DeathTotals.Cause, cause.name())
                 .increment();
         if(result) clearData(playerId);

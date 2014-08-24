@@ -60,9 +60,9 @@ public class DetailedItemStats {
         public boolean pushData(int playerId) {
             return Query.table(ItemsDropped.TableName)
                     .value(ItemsDropped.PlayerId, playerId)
+                    .value(ItemsDropped.ServerId, Statistics.getServerStatistics().ServerId())
                     .value(ItemsDropped.MaterialId, MaterialCache.parse(stack))
                     .value(ItemsDropped.Amount, stack.getAmount())
-                    .value(ItemsDropped.ServerId, Statistics.getServerStatistics().getID())
                     .value(ItemsDropped.World, location.getWorld().getName())
                     .value(ItemsDropped.XCoord, location.getBlockX())
                     .value(ItemsDropped.YCoord, location.getBlockY())
@@ -96,9 +96,9 @@ public class DetailedItemStats {
         public boolean pushData(int playerId) {
             return Query.table(ItemsPickedUp.TableName)
                     .value(ItemsPickedUp.PlayerId, playerId)
+                    .value(ItemsDropped.ServerId, Statistics.getServerStatistics().ServerId())
                     .value(ItemsPickedUp.Material, MaterialCache.parse(stack))
                     .value(ItemsDropped.Amount, this.amount)
-                    .value(ItemsDropped.ServerId, Statistics.getServerStatistics().getID())
                     .value(ItemsPickedUp.World, location.getWorld().getName())
                     .value(ItemsPickedUp.XCoord, location.getBlockX())
                     .value(ItemsPickedUp.YCoord, location.getBlockY())
@@ -131,6 +131,7 @@ public class DetailedItemStats {
         public boolean pushData(int playerId) {
             return Query.table(ItemsConsumed.TableName)
                     .value(ItemsConsumed.PlayerId, playerId)
+                    .value(ItemsDropped.ServerId, Statistics.getServerStatistics().ServerId())
                     .value(ItemsConsumed.MaterialId, MaterialCache.parse(stack))
                     .value(ItemsConsumed.World, location.getWorld().getName())
                     .value(ItemsConsumed.XCoord, location.getBlockX())

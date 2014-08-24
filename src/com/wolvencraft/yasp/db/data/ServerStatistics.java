@@ -58,7 +58,7 @@ public class ServerStatistics {
     private int availableProcessors;
 
     private String serverIP;
-    private int serverID;
+    private int serverId;
     private String serverName;
     private int serverPort;
     private String serverMOTD;
@@ -121,7 +121,7 @@ public class ServerStatistics {
         if(LocalConfiguration.Bungee.toBoolean()){
             serverName = LocalConfiguration.ServerName.toString();
             do{
-                serverID = -1;
+                serverId = -1;
                 QueryResult serverRow = Query.table(ServerStatsTable.TableName)
                     .column(ServerStatsTable.Id)
                     .condition(ServerStatsTable.Name, serverName)
@@ -130,17 +130,17 @@ public class ServerStatistics {
                 if(serverRow == null) {
                     this.createEntry();
                 } else {
-                    serverID = serverRow.asInt(ServerStatsTable.Id);
+                    serverId = serverRow.asInt(ServerStatsTable.Id);
                 }      
-            } while(serverID == -1);
+            } while(serverId == -1);
             
         } else {
             serverName = "default";
-            serverID = 1;
+            serverId = 1;
         }
         
-        if(Query.table(ServerStatsTable.TableName).condition(ServerStatsTable.Id, serverID).exists()){
-            QueryResult result = Query.table(ServerStatsTable.TableName).condition(ServerStatsTable.Id, serverID).select();         
+        if(Query.table(ServerStatsTable.TableName).condition(ServerStatsTable.Id, serverId).exists()){
+            QueryResult result = Query.table(ServerStatsTable.TableName).condition(ServerStatsTable.Id, serverId).select();         
             firstStartup = result.asLong(ServerStatsTable.FirstStartup);
             totalUptime = result.asLong(ServerStatsTable.TotalUptime);
             lastShutdown = result.asLong(ServerStatsTable.LastShutdown);
@@ -172,7 +172,7 @@ public class ServerStatistics {
         ticksPerSecond = TickTask.getTicksPerSecond();
                 
         Query.table(ServerStatsTable.TableName)
-                .condition(ServerStatsTable.Id, serverID)
+                .condition(ServerStatsTable.Id, serverId)
                 .value(ServerStatsTable.CurrentUptime, currentUptime)
                 .value(ServerStatsTable.TotalUptime, totalUptime)
                 .value(ServerStatsTable.MaxPlayers, maxPlayersOnline)
@@ -193,7 +193,7 @@ public class ServerStatistics {
      */
     public void pushStaticData() {
         Query.table(ServerStatsTable.TableName)
-                .condition(ServerStatsTable.Id, serverID)
+                .condition(ServerStatsTable.Id, serverId)
                 .value(ServerStatsTable.FirstStartup, firstStartup)
                 .value(ServerStatsTable.LastStartup, lastStartup)
                 .value(ServerStatsTable.Plugins, plugins)
@@ -256,12 +256,15 @@ public class ServerStatistics {
     public void pluginShutdown() {
         
        Query.table(ServerStatsTable.TableName)
-               .condition(ServerStatsTable.Id, serverID)
+               .condition(ServerStatsTable.Id, serverId)
                .value(ServerStatsTable.LastShutdown, Util.getTimestamp())
                .value(ServerStatsTable.CurrentUptime, 0)
                .update();
        
-        Query.table(Normal.PlayerStats.TableName).value(Normal.PlayerStats.Online, false).condition(Normal.PlayerStats.Online, true).condition(Normal.PlayerStats.Server, serverID).update();
+        Query.table(Normal.PlayerStats.TableName)
+                .value(Normal.PlayerStats.Online, false)
+                .condition(Normal.PlayerStats.Online, true)
+                .condition(Normal.PlayerStats.ServerId, serverId).update();
     }
     
     /**
@@ -285,7 +288,7 @@ public class ServerStatistics {
             @Override
             public void run(){            
             Query.table(ServerStatsTable.TableName)
-                .condition(ServerStatsTable.Id, serverID)
+                .condition(ServerStatsTable.Id, serverId)
                 .value(ServerStatsTable.Weather, weather)
                 .value(ServerStatsTable.WeatherDuration, weatherDuration)
                 .update();
@@ -299,7 +302,7 @@ public class ServerStatistics {
     public void pluginNumberChange() {
         plugins = Bukkit.getServer().getPluginManager().getPlugins().length;
         Query.table(ServerStatsTable.TableName)
-                .condition(ServerStatsTable.Id, serverID)
+                .condition(ServerStatsTable.Id, serverId)
                 .value(ServerStatsTable.Plugins, plugins)
                 .update();
     }
@@ -355,7 +358,7 @@ public class ServerStatistics {
      * Retruns the server Id
      * @return serverID
      */
-    public int getID () {
-        return this.serverID;
+    public int ServerId () {
+        return this.serverId;
     }
 }

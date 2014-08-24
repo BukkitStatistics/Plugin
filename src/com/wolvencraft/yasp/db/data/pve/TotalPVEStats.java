@@ -23,6 +23,7 @@ package com.wolvencraft.yasp.db.data.pve;
 import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
 
+import com.wolvencraft.yasp.Statistics;
 import com.wolvencraft.yasp.db.Query;
 import com.wolvencraft.yasp.db.Query.QueryResult;
 import com.wolvencraft.yasp.db.data.NormalData;
@@ -68,12 +69,14 @@ public class TotalPVEStats extends NormalData {
                 .column(PVETotals.PlayerKilled)
                 .column(PVETotals.CreatureKilled)
                 .condition(PVETotals.PlayerId, playerId)
+                .condition(PVETotals.ServerId, Statistics.getServerStatistics().ServerId())
                 .condition(PVETotals.CreatureId, EntityCache.parse(creatureType))
                 .condition(PVETotals.MaterialId, MaterialCache.parse(weapon))
                 .select();
         if(result == null) {
             Query.table(PVETotals.TableName)
                 .value(PVETotals.PlayerId, playerId)
+                .value(PVETotals.ServerId, Statistics.getServerStatistics().ServerId())
                 .value(PVETotals.CreatureId, EntityCache.parse(creatureType))
                 .value(PVETotals.MaterialId, MaterialCache.parse(weapon))
                 .value(PVETotals.PlayerKilled, playerDeaths)
@@ -88,6 +91,7 @@ public class TotalPVEStats extends NormalData {
                 .value(PVETotals.PlayerKilled, playerDeaths)
                 .value(PVETotals.CreatureKilled, creatureDeaths)
                 .condition(PVETotals.PlayerId, playerId)
+                .condition(PVETotals.ServerId, Statistics.getServerStatistics().ServerId())
                 .condition(PVETotals.CreatureId, EntityCache.parse(creatureType))
                 .condition(PVETotals.MaterialId, MaterialCache.parse(weapon))
                 .increment();

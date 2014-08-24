@@ -22,6 +22,7 @@ package com.wolvencraft.yasp.db.data.pvp;
 
 import org.bukkit.inventory.ItemStack;
 
+import com.wolvencraft.yasp.Statistics;
 import com.wolvencraft.yasp.db.Query;
 import com.wolvencraft.yasp.db.Query.QueryResult;
 import com.wolvencraft.yasp.db.data.NormalData;
@@ -65,9 +66,11 @@ public class TotalPVPStats extends NormalData {
                 .condition(PVPTotals.PlayerId, killerId)
                 .condition(PVPTotals.VictimId, victimId)
                 .condition(PVPTotals.MaterialId, MaterialCache.parse(weapon))
+                .condition(PVPTotals.ServerId, Statistics.getServerStatistics().ServerId())
                 .select();
         if(result == null) {
             Query.table(PVPTotals.TableName)
+                .value(PVPTotals.ServerId, Statistics.getServerStatistics().ServerId())
                 .value(PVPTotals.PlayerId, killerId)
                 .value(PVPTotals.VictimId, victimId)
                 .value(PVPTotals.MaterialId, MaterialCache.parse(weapon))
@@ -83,6 +86,7 @@ public class TotalPVPStats extends NormalData {
                 .condition(PVPTotals.PlayerId, killerId)
                 .condition(PVPTotals.VictimId, victimId)
                 .condition(PVPTotals.MaterialId, MaterialCache.parse(weapon))
+                .condition(PVPTotals.ServerId, Statistics.getServerStatistics().ServerId())
                 .increment();
         if(result) clearData(killerId);
         return result;

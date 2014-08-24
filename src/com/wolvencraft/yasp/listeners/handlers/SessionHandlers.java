@@ -58,7 +58,7 @@ public class SessionHandlers {
             @Override
                  public void run(){
                      Query.table(Normal.PlayerStats.TableName)
-                          .value(Normal.PlayerStats.Server, Statistics.getServerStatistics().getID())
+                          .value(Normal.PlayerStats.ServerId, Statistics.getServerStatistics().ServerId())
                           .condition(Normal.PlayerStats.PlayerId, OnlineSessionCache.fetch(player).getId())
                           .update();
                      

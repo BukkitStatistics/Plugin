@@ -162,7 +162,7 @@ public enum Module {
              .value(ModulesTable.Version, version)
              .condition(ModulesTable.Type, "hook")
              .condition(ModulesTable.Name, KEY)
-             .condition(ModulesTable.Server, Statistics.getServerStatistics().getID())
+             .condition(ModulesTable.Server, Statistics.getServerStatistics().ServerId())
              .update();
     }
     
@@ -171,7 +171,7 @@ public enum Module {
      */
     private void updateCache() {
             QueryResult Result = Query.table(ModulesTable.TableName)
-                                      .condition(ModulesTable.Server, Statistics.getServerStatistics().getID())
+                                      .condition(ModulesTable.Server, Statistics.getServerStatistics().ServerId())
                                       .condition(ModulesTable.Name, KEY)
                                       .select();
             if(Result == null) {
@@ -180,7 +180,7 @@ public enum Module {
                          .value(ModulesTable.Enabled, false)
                          .value(ModulesTable.Version, 0)
                          .value(ModulesTable.Type, "hook")
-                         .value(ModulesTable.Server, Statistics.getServerStatistics().getID())
+                         .value(ModulesTable.Server, Statistics.getServerStatistics().ServerId())
                          .value(ModulesTable.Name, KEY)
                          .insert();
                     version = 0;
@@ -190,7 +190,7 @@ public enum Module {
                          .value(ModulesTable.Enabled, true)
                          .value(ModulesTable.Version, -1)
                          .value(ModulesTable.Type, "module")
-                         .value(ModulesTable.Server, Statistics.getServerStatistics().getID())
+                         .value(ModulesTable.Server, Statistics.getServerStatistics().ServerId())
                          .value(ModulesTable.Name, KEY)
                          .insert();
                     version = -1;

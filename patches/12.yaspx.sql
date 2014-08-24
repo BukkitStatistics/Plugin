@@ -69,72 +69,128 @@ CREATE  TABLE IF NOT EXISTS `$dbname`.`$prefix_modules` (
 -- Alter existing tables
 -- -----------------------------------------------------
 
-ALTER TABLE `$prefix_players` ADD `server` INT NOT NULL DEFAULT 1  AFTER `online`;
+ALTER TABLE `$prefix_players` ADD `server_id` INT NOT NULL DEFAULT 1  AFTER `online`;
 ALTER TABLE `$prefix_players` ADD CONSTRAINT `$prefix_fk_server_id2`
-    FOREIGN KEY (`server`)
+    FOREIGN KEY (`server_id`)
     REFERENCES `$dbname`.`$prefix_server_statistics` (`server_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION;
 
-ALTER TABLE `$prefix_detailed_death_players` ADD `server` INT NOT NULL DEFAULT 1 AFTER `cause`;
+ALTER TABLE `$prefix_detailed_death_players` ADD `server_id` INT NOT NULL DEFAULT 1 AFTER `cause`;
 ALTER TABLE `$prefix_detailed_death_players` ADD CONSTRAINT `$prefix_fk_server_id3`
-    FOREIGN KEY (`server`)
+    FOREIGN KEY (`server_id`)
     REFERENCES `$dbname`.`$prefix_server_statistics` (`server_id`)
     ON DELETE CASCADE
     ON UPDATE NO ACTION;
 
-ALTER TABLE `$prefix_detailed_destroyed_blocks` ADD `server` INT NOT NULL DEFAULT 1 AFTER `player_id`;
+ALTER TABLE `$prefix_detailed_destroyed_blocks` ADD `server_id` INT NOT NULL DEFAULT 1 AFTER `player_id`;
 ALTER TABLE `$prefix_detailed_destroyed_blocks` ADD CONSTRAINT `$prefix_fk_server_id4`
-    FOREIGN KEY (`server`)
+    FOREIGN KEY (`server_id`)
     REFERENCES `$dbname`.`$prefix_server_statistics` (`server_id`)
     ON DELETE CASCADE
     ON UPDATE NO ACTION;
 
-ALTER TABLE `$prefix_detailed_dropped_items` ADD `server` INT NOT NULL DEFAULT 1 AFTER `player_id`;
+ALTER TABLE `$prefix_detailed_dropped_items` ADD `server_id` INT NOT NULL DEFAULT 1 AFTER `player_id`;
 ALTER TABLE `$prefix_detailed_dropped_items` ADD CONSTRAINT `$prefix_fk_server_id5`
-    FOREIGN KEY (`server`)
+    FOREIGN KEY (`server_id`)
     REFERENCES `$dbname`.`$prefix_server_statistics` (`server_id`)
     ON DELETE CASCADE
     ON UPDATE NO ACTION;
 
-ALTER TABLE `$prefix_detailed_log_players` ADD `server` INT NOT NULL DEFAULT 1 AFTER `player_id`;
+ALTER TABLE `$prefix_detailed_log_players` ADD `server_id` INT NOT NULL DEFAULT 1 AFTER `player_id`;
 ALTER TABLE `$prefix_detailed_log_players` ADD CONSTRAINT `$prefix_fk_server_id6`
-    FOREIGN KEY (`server`)
+    FOREIGN KEY (`server_id`)
     REFERENCES `$dbname`.`$prefix_server_statistics` (`server_id`)
     ON DELETE CASCADE
     ON UPDATE NO ACTION;
 
-ALTER TABLE `$prefix_detailed_pickedup_items` ADD `server` INT NOT NULL DEFAULT 1  AFTER `player_id`;
+ALTER TABLE `$prefix_detailed_pickedup_items` ADD `server_id` INT NOT NULL DEFAULT 1  AFTER `player_id`;
 ALTER TABLE `$prefix_detailed_pickedup_items` ADD CONSTRAINT `$prefix_fk_server_id7`
-    FOREIGN KEY (`server`)
+    FOREIGN KEY (`server_id`)
     REFERENCES `$dbname`.`$prefix_server_statistics` (`server_id`)
     ON DELETE CASCADE
     ON UPDATE NO ACTION;
 
-ALTER TABLE `$prefix_detailed_placed_blocks` ADD `server` INT NOT NULL DEFAULT 1 AFTER `player_id`;
+ALTER TABLE `$prefix_detailed_placed_blocks` ADD `server_id` INT NOT NULL DEFAULT 1 AFTER `player_id`;
 ALTER TABLE `$prefix_detailed_placed_blocks` ADD CONSTRAINT `$prefix_fk_server_id8`
-    FOREIGN KEY (`server`)
+    FOREIGN KEY (`server_id`)
     REFERENCES `$dbname`.`$prefix_server_statistics` (`server_id`)
     ON DELETE CASCADE
     ON UPDATE NO ACTION;
 
-ALTER TABLE `$prefix_detailed_pve_kills` ADD `server` INT NOT NULL DEFAULT 1 AFTER `cause` ;
+ALTER TABLE `$prefix_detailed_pve_kills` ADD `server_id` INT NOT NULL DEFAULT 1 AFTER `cause` ;
 ALTER TABLE `$prefix_detailed_pve_kills` ADD CONSTRAINT `$prefix_fk_server_id9`
-    FOREIGN KEY (`server`)
+    FOREIGN KEY (`server_id`)
     REFERENCES `$dbname`.`$prefix_server_statistics` (`server_id`)
     ON DELETE CASCADE
     ON UPDATE NO ACTION;
 
-ALTER TABLE `$prefix_detailed_pvp_kills` ADD `server` INT NOT NULL DEFAULT 1 AFTER `cause`;
+ALTER TABLE `$prefix_detailed_pvp_kills` ADD `server_id` INT NOT NULL DEFAULT 1 AFTER `cause`;
 ALTER TABLE `$prefix_detailed_pvp_kills` ADD CONSTRAINT `$prefix_fk_server_id10`
-    FOREIGN KEY (`server`)
+    FOREIGN KEY (`server_id`)
     REFERENCES `$dbname`.`$prefix_server_statistics` (`server_id`)
     ON DELETE CASCADE
     ON UPDATE NO ACTION;
 
-ALTER TABLE `$prefix_detailed_used_items` ADD `server` INT NOT NULL DEFAULT 1  AFTER `player_id` ;
+ALTER TABLE `$prefix_detailed_used_items` ADD `server_id` INT NOT NULL DEFAULT 1  AFTER `player_id` ;
 ALTER TABLE `$prefix_detailed_used_items` ADD CONSTRAINT `$prefix_fk_server_id11`
-    FOREIGN KEY (`server`)
+    FOREIGN KEY (`server_id`)
+    REFERENCES `$dbname`.`$prefix_server_statistics` (`server_id`)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION;
+
+ALTER TABLE `$prefix_distances` ADD `server_id` INT NOT NULL DEFAULT 1  AFTER `player_id` ;
+ALTER TABLE `$prefix_distances` ADD CONSTRAINT `$prefix_fk_server_id12`
+    FOREIGN KEY (`server_id`)
+    REFERENCES `$dbname`.`$prefix_server_statistics` (`server_id`)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION;
+
+ALTER TABLE `$prefix_misc_info_players` ADD `server_id` INT NOT NULL DEFAULT 1  AFTER `player_id` ;
+ALTER TABLE `$prefix_misc_info_players` ADD CONSTRAINT `$prefix_fk_server_id13`
+    FOREIGN KEY (`server_id`)
+    REFERENCES `$dbname`.`$prefix_server_statistics` (`server_id`)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION;
+
+ALTER TABLE `$prefix_player_locations` ADD `server_id` INT NOT NULL DEFAULT 1  AFTER `player_id` ;
+ALTER TABLE `$prefix_player_locations` ADD CONSTRAINT `$prefix_fk_server_id14`
+    FOREIGN KEY (`server_id`)
+    REFERENCES `$dbname`.`$prefix_server_statistics` (`server_id`)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION;
+
+ALTER TABLE `$prefix_total_blocks` ADD `server_id` INT NOT NULL DEFAULT 1  AFTER `player_id` ;
+ALTER TABLE `$prefix_total_blocks` ADD CONSTRAINT `$prefix_fk_server_id15`
+    FOREIGN KEY (`server_id`)
+    REFERENCES `$dbname`.`$prefix_server_statistics` (`server_id`)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION;
+
+ALTER TABLE `$prefix_total_deaths` ADD `server_id` INT NOT NULL DEFAULT 1  AFTER `player_id` ;
+ALTER TABLE `$prefix_total_deaths` ADD CONSTRAINT `$prefix_fk_server_id16`
+    FOREIGN KEY (`server_id`)
+    REFERENCES `$dbname`.`$prefix_server_statistics` (`server_id`)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION;
+
+ALTER TABLE `$prefix_total_items` ADD `server_id` INT NOT NULL DEFAULT 1  AFTER `player_id` ;
+ALTER TABLE `$prefix_total_items` ADD CONSTRAINT `$prefix_fk_server_id17`
+    FOREIGN KEY (`server_id`)
+    REFERENCES `$dbname`.`$prefix_server_statistics` (`server_id`)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION;
+
+ALTER TABLE `$prefix_total_pve_kills` ADD `server_id` INT NOT NULL DEFAULT 1  AFTER `player_id` ;
+ALTER TABLE `$prefix_total_pve_kills` ADD CONSTRAINT `$prefix_fk_server_id18`
+    FOREIGN KEY (`server_id`)
+    REFERENCES `$dbname`.`$prefix_server_statistics` (`server_id`)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION;
+
+ALTER TABLE `$prefix_total_pvp_kills` ADD `server_id` INT NOT NULL DEFAULT 1  AFTER `player_id` ;
+ALTER TABLE `$prefix_total_pvp_kills` ADD CONSTRAINT `$prefix_fk_server_id19`
+    FOREIGN KEY (`server_id`)
     REFERENCES `$dbname`.`$prefix_server_statistics` (`server_id`)
     ON DELETE CASCADE
     ON UPDATE NO ACTION;

@@ -20,6 +20,7 @@
 
 package com.wolvencraft.yasp.db.data.blocks;
 
+import com.wolvencraft.yasp.Statistics;
 import org.bukkit.block.BlockState;
 
 import com.wolvencraft.yasp.db.Query;
@@ -62,6 +63,7 @@ public class TotalBlockStats extends NormalData {
                 .column(BlockTotals.Placed)
                 .condition(BlockTotals.PlayerId, playerId)
                 .condition(BlockTotals.MaterialId, MaterialCache.parse(block))
+                .condition(BlockTotals.ServerId, Statistics.getServerStatistics().ServerId())
                 .select();
         
         if(result == null) {

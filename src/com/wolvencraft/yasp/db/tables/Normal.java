@@ -42,7 +42,7 @@ public class Normal {
     public enum PlayerDistance implements DBTable {
         TableName       ("distances"),
         PlayerId        ("player_id"),
-        ServerId        ("server"),
+        ServerId        ("server_id"),
         Foot            ("foot"),
         Swim            ("swim"),
         Flight          ("flight"),
@@ -69,7 +69,7 @@ public class Normal {
         PlayerId        ("player_id"),
         Name            ("name"),
         Online          ("online"),
-        Server          ("server"),
+        ServerId        ("server_id"),
         LoginTime       ("login_time"),
         Playtime        ("playtime"),
         FirstLogin      ("first_login"),
@@ -92,6 +92,7 @@ public class Normal {
     public enum PlayerData implements DBTable {
         TableName       ("misc_info_players"),
         PlayerId        ("player_id"),
+        ServerId        ("server_id"),
         IsOp            ("is_op"),
         IsBanned        ("is_banned"),
         PlayerIp        ("player_ip"),
@@ -157,6 +158,7 @@ public class Normal {
         TableName       ("total_blocks"),
         MaterialId      ("material_id"),
         PlayerId        ("player_id"),
+        ServerId        ("server_id"),
         Destroyed       ("destroyed"),
         Placed          ("placed");
         
@@ -177,6 +179,7 @@ public class Normal {
         TableName       ("total_items"),
         MaterialId      ("material_id"),
         PlayerId        ("player_id"),
+        ServerId        ("server_id"),
         Dropped         ("dropped"),
         PickedUp        ("picked_up"),
         Used            ("used"),
@@ -202,6 +205,7 @@ public class Normal {
     public enum DeathTotals implements DBTable {
         TableName       ("total_deaths"),
         PlayerId        ("player_id"),
+        ServerId        ("server_id"),
         Cause           ("cause"),
         Times           ("times");
         
@@ -223,6 +227,7 @@ public class Normal {
         MaterialId      ("material_id"),
         CreatureId      ("entity_id"),
         PlayerId        ("player_id"),
+        ServerId        ("server_id"),
         PlayerKilled    ("player_killed"),
         CreatureKilled  ("creature_killed");
         
@@ -243,6 +248,7 @@ public class Normal {
         TableName       ("total_pvp_kills"),
         MaterialId      ("material_id"),
         PlayerId        ("player_id"),
+        ServerId        ("server_id"),
         VictimId        ("victim_id"),
         Times           ("times");
         
@@ -262,6 +268,7 @@ public class Normal {
     public enum PlayerLocations implements DBTable {
         TableName       ("player_locations"),
         PlayerId        ("player_id"),
+        ServerId        ("server_id"),
         World           ("world"),
         XCoord          ("x"),
         YCoord          ("y"),

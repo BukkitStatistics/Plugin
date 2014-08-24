@@ -23,6 +23,7 @@ package com.wolvencraft.yasp.db.data.items;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
+import com.wolvencraft.yasp.Statistics;
 import com.wolvencraft.yasp.db.Query;
 import com.wolvencraft.yasp.db.Query.QueryResult;
 import com.wolvencraft.yasp.db.data.NormalData;
@@ -83,12 +84,14 @@ public class TotalItemStats extends NormalData {
                 .column(ItemTotals.Enchanted)
                 .column(ItemTotals.Repaired)
                 .condition(ItemTotals.PlayerId, playerId)
+                .condition(ItemTotals.ServerId, Statistics.getServerStatistics().ServerId())
                 .condition(ItemTotals.MaterialId, MaterialCache.parse(stack))
                 .select();
         
         if(result == null) {
             Query.table(ItemTotals.TableName)
                 .value(ItemTotals.PlayerId, playerId)
+                .value(ItemTotals.ServerId, Statistics.getServerStatistics().ServerId())
                 .value(ItemTotals.MaterialId, MaterialCache.parse(stack))
                 .value(ItemTotals.Dropped, dropped)
                 .value(ItemTotals.PickedUp, pickedUp)
@@ -114,6 +117,7 @@ public class TotalItemStats extends NormalData {
                 .value(ItemTotals.Enchanted, enchanted)
                 .value(ItemTotals.Repaired, repaired)
                 .condition(ItemTotals.PlayerId, playerId)
+                .condition(ItemTotals.ServerId, Statistics.getServerStatistics().ServerId())
                 .condition(ItemTotals.MaterialId, MaterialCache.parse(stack))
                 .increment();
         if(result) clearData(playerId);

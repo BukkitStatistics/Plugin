@@ -63,7 +63,7 @@ public class DetailedPVPStats {
                     .value(PlayerKillsPVP.VictimId, victimId)
                     .value(PlayerKillsPVP.MaterialId, MaterialCache.parse(weapon))
                     .value(PlayerKillsPVP.World, location.getWorld().getName())
-                    .value(PlayerKillsPVP.ServerId, Statistics.getServerStatistics().getID())
+                    .value(PlayerKillsPVP.ServerId, Statistics.getServerStatistics().ServerId())
                     .value(PlayerKillsPVP.XCoord, location.getBlockX())
                     .value(PlayerKillsPVP.YCoord, location.getBlockY())
                     .value(PlayerKillsPVP.ZCoord, location.getBlockZ())

@@ -20,6 +20,7 @@
 
 package com.wolvencraft.yasp.db.data.players;
 
+import com.wolvencraft.yasp.Statistics;
 import lombok.AccessLevel;
 import lombok.Getter;
 
@@ -72,10 +73,12 @@ public class DistancePlayerEntry extends NormalData {
                 .column(PlayerDistance.Minecart)
                 .column(PlayerDistance.Ride)
                 .condition(PlayerDistance.PlayerId, playerId)
+                .condition(PlayerDistance.ServerId, Statistics.getServerStatistics().ServerId())
                 .select();
         if(result == null) {
             Query.table(PlayerDistance.TableName)
                 .value(PlayerDistance.PlayerId, playerId)
+                .value(PlayerDistance.ServerId, Statistics.getServerStatistics().ServerId())
                 .value(PlayerDistance.Foot, foot)
                 .value(PlayerDistance.Swim, swim)
                 .value(PlayerDistance.Flight, flight)
@@ -96,6 +99,7 @@ public class DistancePlayerEntry extends NormalData {
             .value(PlayerDistance.Minecart, minecart)
             .value(PlayerDistance.Ride, ride)
             .condition(PlayerDistance.PlayerId, playerId)
+            .condition(PlayerDistance.ServerId, Statistics.getServerStatistics().ServerId())
             .increment();
         if(result) clearData(playerId);
         return result;

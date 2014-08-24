@@ -20,6 +20,7 @@
 
 package com.wolvencraft.yasp.db.data.players;
 
+import com.wolvencraft.yasp.Statistics;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -72,10 +73,12 @@ public class MiscInfoPlayerStats extends NormalData {
     public void fetchData(int playerId) {
         QueryResult result = Query.table(PlayerData.TableName)
             .condition(PlayerData.PlayerId, playerId)
+            .condition(PlayerData.ServerId, Statistics.getServerStatistics().ServerId())
             .select();
         if(result == null) {
             Query.table(PlayerData.TableName)
                 .value(PlayerData.PlayerId, playerId)
+                .value(PlayerData.ServerId, Statistics.getServerStatistics().ServerId())
                 .valueRaw(values)
                 .insert();
         } else {
@@ -99,6 +102,7 @@ public class MiscInfoPlayerStats extends NormalData {
         boolean result = Query.table(PlayerData.TableName)
             .valueRaw(values)
             .condition(PlayerData.PlayerId, playerId)
+            .condition(PlayerData.ServerId, Statistics.getServerStatistics().ServerId())
             .update();
         clearData(playerId);
         return result;

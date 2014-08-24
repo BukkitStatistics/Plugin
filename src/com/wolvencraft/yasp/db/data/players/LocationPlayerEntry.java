@@ -20,16 +20,17 @@
 
 package com.wolvencraft.yasp.db.data.players;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.entity.Player;
-
+import com.wolvencraft.yasp.Statistics;
 import com.wolvencraft.yasp.db.Query;
 import com.wolvencraft.yasp.db.data.NormalData;
 import com.wolvencraft.yasp.db.tables.Normal.PlayerLocations;
 
 import lombok.AccessLevel;
 import lombok.Getter;
+
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.entity.Player;
 
 @Getter(AccessLevel.PUBLIC)
 public class LocationPlayerEntry extends NormalData {
@@ -55,6 +56,7 @@ public class LocationPlayerEntry extends NormalData {
             
             Query.table(PlayerLocations.TableName)
                 .value(PlayerLocations.PlayerId, playerId)
+                .value(PlayerLocations.ServerId, Statistics.getServerStatistics().ServerId())
                 .value(PlayerLocations.World, location.getWorld().getName())
                 .value(PlayerLocations.XCoord, location.getBlockX())
                 .value(PlayerLocations.YCoord, location.getBlockY())

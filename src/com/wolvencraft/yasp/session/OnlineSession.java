@@ -114,7 +114,7 @@ public class OnlineSession implements PlayerSession {
         
                     Query.table(PlayerStats.TableName)
                     .value(PlayerStats.Online, true)
-                    .value(PlayerStats.Server, Statistics.getServerStatistics().getID())
+                    .value(PlayerStats.ServerId, Statistics.getServerStatistics().ServerId())
                     .condition(PlayerStats.PlayerId, id)
                     .update();  
                     
@@ -193,7 +193,7 @@ public class OnlineSession implements PlayerSession {
         Query.table(PlayerStats.TableName)
             .value(PlayerStats.Online, false)
             .condition(PlayerStats.PlayerId, id)
-            .condition(PlayerStats.Server, Statistics.getServerStatistics().getID())
+            .condition(PlayerStats.ServerId, Statistics.getServerStatistics().ServerId())
             .update();
     }
     
