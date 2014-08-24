@@ -69,6 +69,7 @@ public class TotalBlockStats extends NormalData {
         if(result == null) {
             Query.table(BlockTotals.TableName)
                 .value(BlockTotals.PlayerId, playerId)
+                .value(BlockTotals.ServerId, Statistics.getServerStatistics().ServerId())
                 .value(BlockTotals.MaterialId, MaterialCache.parse(block))
                 .value(BlockTotals.Destroyed, broken)
                 .value(BlockTotals.Placed, placed)
@@ -83,6 +84,7 @@ public class TotalBlockStats extends NormalData {
             .value(BlockTotals.Placed, placed)
             .condition(BlockTotals.PlayerId, playerId)
             .condition(BlockTotals.MaterialId, MaterialCache.parse(block))
+            .condition(BlockTotals.ServerId, Statistics.getServerStatistics().ServerId())
             .increment();
         if(result) clearData(playerId);
         return result;
